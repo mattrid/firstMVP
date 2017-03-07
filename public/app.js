@@ -19,20 +19,28 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
    });
   }
   $scope.addAssignment = function() {
-
+    if($scope.name === '' || $scope.date ===''){
+      return;
+    }
     $http({
       method: 'POST',
       url: '/api/addAssignment',
       data: {name: $scope.name, dueDate: $scope.date}
     })
     .then(function(resp){
-      console.log($scope)
       $scope.getAll();
     })
-
+    $scope.name = '';
+    $scope.date = '';
   }
 
   $scope.removeAssignment = function(index){
-    $scope.homeworks.splice(index, 1);
+    var removedAssignment = $scope.homeworks.splice(index, 1);
+    console.log(removedAssignment[0].name + ' ' + removedAssignment[0].dueDate);
+
+    $http.delete('/api/removeAssignment', {params: {name: removedAssignment[0].name, dueDate: removedAssignment[0].dueDate}});
+
+
+
   };
 }]);

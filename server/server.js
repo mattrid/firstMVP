@@ -14,6 +14,7 @@ var app = express();
 app.use(bodyParser.json());
 app.post('/api/addAssignment', hwController.addAssignment);
 app.get('/api/getAll', hwController.getAll);
+app.delete('/api/removeAssignment', hwController.removeAssignment);
 app.use(express.static('public'))
 
 app.listen(8000);
