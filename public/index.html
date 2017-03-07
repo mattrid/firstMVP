@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>What's Due</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="whatsDue" ng-controller="MainCtrl">
+    <form ng-submit="addAssignment()">
+      <input type="text" ng-model="name" placeholder="Homework name"></input>
+      <br>
+      <input type="text" ng-model="date" placeholder='Date Due'></input>
+      <br>
+      <button type="submit">Add Homework</button>
+
+    </form>
+    <button ng-click='getAll()'>Add Homework</button>
+    <div ng-repeat='homework in homeworks ' ng-click='removeAssignment($index)'>
+      {{homework.name}} is due on: {{homework.dueDate}}
+    </div>
+  </body>
+</html>
