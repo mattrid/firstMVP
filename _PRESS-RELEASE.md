@@ -38,10 +38,10 @@ Once the project moves into development, the press release can be used as a touc
   > A quote from a spokesperson in your company.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > It is as simple as entering in an assignment and the date that it is due.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "With this app I it was easy to keep my kids on track and watch their grades improve."
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Start to know What's Due right now and help your kids stay on top of the work load.
