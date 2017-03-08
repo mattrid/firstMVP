@@ -18,22 +18,25 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
      console.log('GOT THIS ERROR', err);
    });
   }
+  $scope.getAll();
   $scope.addAssignment = function() {
     if($scope.name === '' || $scope.date === ''){
       return;
-    }else{
+    } else{
 
-    $http({
-      method: 'POST',
-      url: '/api/addAssignment',
-      data: {name: $scope.name, dueDate: $scope.date, checked: false}
-    })
-    .then(function(resp){
-      $scope.getAll();
-    })
-    $scope.name = '';
-    $scope.date = '';
-  }
+      $http({
+        method: 'POST',
+        url: '/api/addAssignment',
+        data: {name: $scope.name, dueDate: $scope.date, checked: false, islate: false}
+      })
+      .then(function(resp){
+        console.log('THIS IS IN APP', resp.config.data)
+        $scope.isLate(resp.config.data);
+        $scope.getAll();
+      })
+      $scope.name = '';
+      $scope.date = '';
+    }
   }
 
   $scope.removeAssignment = function(index){
@@ -43,4 +46,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
   $scope.addCheck = function(homework) {
     $http.put('/api/addCheck', homework);
   }
+  $scope.isLate = function(homework) {
+   $http.put('/api/isLate', homework);
+ }
 }]);

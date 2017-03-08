@@ -13,6 +13,7 @@ module.exports = {
    var name = req.body.name;
    var date = req.body.dueDate;
    var checked = req.body.checked;
+   var islate = req.body.islate;
    findHw({name: name})
      .then(function (hw) {
        if (hw) {
@@ -21,7 +22,8 @@ module.exports = {
           createHw({
            name: name,
            dueDate: date,
-           checked: checked
+           checked: checked,
+           islate: islate
          })
          .then(function(){
            res.send(200);
@@ -68,6 +70,21 @@ module.exports = {
      }
      console.log('THIS IS HW', hw);
    })
+ },
+ isLate: function(req, res, next) {
+  var currentDate = new Date();
+  var name = req.body.name;
+  var listDate = new Date(req.body.dueDate);
+  var condition = currentDate > listDate;
+  console.log('THIS IS SEVER CONDITION', condition);
+  if(condition){
+    findHw({name: req.body.name})
+    .then(function(hw){
+      hw.islate = true;
+      hw.save();
+    })
+  }
+  console.log('LOOK AT ME', req.body);
 
 
  }

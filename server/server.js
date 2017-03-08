@@ -16,6 +16,7 @@ app.post('/api/addAssignment', hwController.addAssignment);
 app.get('/api/getAll', hwController.getAll);
 app.delete('/api/removeAssignment', hwController.removeAssignment);
 app.put('/api/addCheck', hwController.addCheck);
+app.put('/api/isLate', hwController.isLate);
 app.use(express.static('public'))
 
 app.listen(8000);
