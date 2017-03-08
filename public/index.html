@@ -5,17 +5,20 @@
     <script src="app.js"></script>
   </head>
   <body ng-app="whatsDue" ng-controller="MainCtrl">
+    <div><font size='7'><bold>What's App</bold></font></div>
+    <br>
     <form ng-submit="addAssignment()">
-      <input type="text" ng-model="name" placeholder="Homework name"></input>
+      <input style="height:50px;width:300;font-size:14pt;" type="text" ng-model="name" placeholder="Homework name"></input>
       <br>
-      <input type="text" ng-model="date" placeholder='Date Due'></input>
+      <input style="height:50px;width:300;font-size:14pt;" type="text" ng-model="date" placeholder='Date Due'></input>
       <br>
-      <button type="submit">Add Homework</button>
+      <br>
+      <button style='width:150px;height:50;font-size: 14pt' type="submit">Add Homework</button>
 
     </form>
-    <button ng-click='getAll()'>Add Homework</button>
-    <div ng-repeat='homework in homeworks ' ng-click='removeAssignment($index)'>
-      {{homework.name}} is due on: {{homework.dueDate}}
+    <div ng-repeat='homework in homeworks ' >
+      <input ng-model='homework.checked' ng-change='addCheck(homework)' type='checkbox'></input>
+      <font size='7' ng-click='removeAssignment($index)'>{{homework.name}} is due on: {{homework.dueDate}}</font>
     </div>
   </body>
 </html>

@@ -6,11 +6,13 @@ var findHw = Q.nbind(hw.findOne, hw);
 var findAll = Q.nbind(hw.find, hw);
 var createHw = Q.nbind(hw.create, hw);
 var deleteHw = Q.nbind(hw.remove, hw);
+var updateHw = Q.nbind(hw.update, hw);
 
 module.exports = {
   addAssignment: function (req, res, next) {
    var name = req.body.name;
    var date = req.body.dueDate;
+   var checked = req.body.checked;
    findHw({name: name})
      .then(function (hw) {
        if (hw) {
@@ -18,7 +20,8 @@ module.exports = {
        } else {
           createHw({
            name: name,
-           dueDate: date
+           dueDate: date,
+           checked: checked
          })
          .then(function(){
            res.send(200);
@@ -50,5 +53,22 @@ module.exports = {
    .catch(function(error) {
      next(error);
    })
+ },
+ addCheck: function(req, res, next){
+   var name = req.body.name;
+   var checked = req.body.checked;
+   findHw({name: name})
+   .then(function(hw){
+     if(hw.checked === false){
+       hw.checked = true;
+       hw.save();
+     } else if(hw.checked === true) {
+       hw.checked = false;
+       hw.save();
+     }
+     console.log('THIS IS HW', hw);
+   })
+
+
  }
 }

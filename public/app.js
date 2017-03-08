@@ -19,13 +19,14 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
    });
   }
   $scope.addAssignment = function() {
-    if($scope.name === '' || $scope.date ===''){
+    if($scope.name === '' || $scope.date === ''){
       return;
-    }
+    }else{
+
     $http({
       method: 'POST',
       url: '/api/addAssignment',
-      data: {name: $scope.name, dueDate: $scope.date}
+      data: {name: $scope.name, dueDate: $scope.date, checked: false}
     })
     .then(function(resp){
       $scope.getAll();
@@ -33,14 +34,13 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
     $scope.name = '';
     $scope.date = '';
   }
+  }
 
   $scope.removeAssignment = function(index){
     var removedAssignment = $scope.homeworks.splice(index, 1);
-    console.log(removedAssignment[0].name + ' ' + removedAssignment[0].dueDate);
-
     $http.delete('/api/removeAssignment', {params: {name: removedAssignment[0].name, dueDate: removedAssignment[0].dueDate}});
-
-
-
   };
+  $scope.addCheck = function(homework) {
+    $http.put('/api/addCheck', homework);
+  }
 }]);
