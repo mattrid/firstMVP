@@ -19,7 +19,7 @@
     <div ng-repeat='homework in homeworks ' >
       <input ng-model='homework.checked' ng-change='addCheck(homework)' type='checkbox'></input>
       <font size='7' ng-click='removeAssignment($index)'>{{homework.name}} is due on: {{homework.dueDate}}</font>
-      <div ng-show="{{homework.islate}}">OVERDUE</div>
+      <div ng-show="{{homework.islate}}"><font color='red'><strong>OVERDUE</strong></font></div>
     </div>
   </body>
 </html>

@@ -76,16 +76,13 @@ module.exports = {
   var name = req.body.name;
   var listDate = new Date(req.body.dueDate);
   var condition = currentDate > listDate;
-  console.log('THIS IS SEVER CONDITION', condition);
-  if(condition){
-    findHw({name: req.body.name})
-    .then(function(hw){
+  findHw({name: req.body.name})
+  .then(function(hw){
+    if(condition){
       hw.islate = true;
       hw.save();
-    })
-  }
+    }
+  })
   console.log('LOOK AT ME', req.body);
-
-
  }
 }
